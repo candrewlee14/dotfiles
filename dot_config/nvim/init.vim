@@ -3,6 +3,7 @@ set nocompatible
 call plug#begin()
 Plug 'vim-test/vim-test'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
 Plug 'sheerun/vim-polyglot'
 Plug 'mhartington/oceanic-next'
 Plug 'airblade/vim-gitgutter'
