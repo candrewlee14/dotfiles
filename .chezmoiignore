@@ -1,1 +1,4 @@
-~/.oh-my-zsh/cache/*
+**/.oh-my-zsh/cache/**
+**/powershell10k/**
+.zsh_history
+
