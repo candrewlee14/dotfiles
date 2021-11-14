@@ -1,13 +1,6 @@
 #!/bin/zsh
 apk update
-apk add neovim
-apk add tmux
-apk add bat
-apk add libuser
+apk add neovim tmux bat
 source ~/.zshrc
-mkdir /etc/login
-touch /etc/login.defs
-mkdir /etc/default
-touch /etc/default/useradd
 p10k configure
 lchsh -i $(whoami)
