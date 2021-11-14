@@ -1,3 +1,8 @@
+[".tmux"]
+    type = "archive"
+    url = "https://github.com/gpakosz/.tmux/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
 [".oh-my-zsh"]
     type = "archive"
     url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
