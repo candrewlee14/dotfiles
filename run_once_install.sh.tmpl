@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+{{- if eq .chezmoi.os "linux" }}
+{{-   if eq .chezmoi.osRelease.id "alpine" }}
+apk update
+apk add zsh neovim tmux bat
+{{-   else if eq .chezmoi.osRelease.id "debian" }}
+sudo apt update
+sudo apt install zsh neovim tmux -y 
+{{-   end  }}
+{{- else if eq .chezmoi.os "darwin" }}
+brew install zsh neovim tmux
+{{- end }}
