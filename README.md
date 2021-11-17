@@ -3,6 +3,6 @@ My config for dotfiles.
 
 ## Setup
 
-Prereqs: `git wget`
+Prereqs: `git curl`
 
-- Run `sh -c "$(wget -qO- git.io/chezmoi)" -- init --apply -v candrewlee14`
+- Run `sh -c "$(curl -fsLS git.io/chezmoi)" -- init --apply candrewlee14`
