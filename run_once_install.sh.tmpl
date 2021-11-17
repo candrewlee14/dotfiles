@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
+echo "Running installation script\n"
 {{- if eq .chezmoi.os "linux" }}
 {{-   if eq .chezmoi.osRelease.id "alpine" }}
 apk update

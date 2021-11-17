@@ -5,4 +5,4 @@ My config for dotfiles.
 
 Prereqs: `git wget`
 
-- Run `sh -c "$(wget -q0- git.io/chezmoi)" -- init --apply candrewlee14`
+- Run `sh -c "$(wget -qO- git.io/chezmoi)" -- init --apply -v candrewlee14`
