@@ -3,11 +3,11 @@ echo "Running installation script\n"
 {{- if eq .chezmoi.os "linux" }}
 {{-   if eq .chezmoi.osRelease.id "alpine" }}
 apk update
-apk add zsh neovim tmux bat
+apk add zsh neovim tmux bat perl
 {{-   else if eq .chezmoi.osRelease.id "debian" }}
 sudo apt update
-sudo apt install zsh neovim tmux -y 
+sudo apt install zsh neovim tmux perl -y 
 {{-   end  }}
 {{- else if eq .chezmoi.os "darwin" }}
-brew install zsh neovim tmux
+brew install zsh neovim tmux perl
 {{- end }}
