@@ -4,7 +4,7 @@ echo "Running installation script\n"
 {{-   if eq .chezmoi.osRelease.id "alpine" }}
 apk update
 apk add zsh neovim tmux bat perl
-{{-   else if eq .chezmoi.osRelease.id "debian" }}
+{{-   else if (or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.id "ubuntu")) }}
 sudo apt update
 sudo apt install zsh neovim tmux perl -y 
 {{-   end  }}
