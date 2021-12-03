@@ -108,6 +108,12 @@ export EDITOR="nvim"
 nvimc() {
     nvim -u ~/.config/nvim/coc_init.vim $1
 }
+nvimq() {
+    nvim -u ~/.config/nvim/coq_init.vim $1
+}
+nvimp() {
+    nvim -u ~/.config/nvim/cmp_init.vim $1
+}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

@@ -8,22 +8,27 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin()
+" Color Schemes
+Plug 'rafi/awesome-vim-colorschemes'
+Plug 'mhartington/oceanic-next'
+Plug 'morhetz/gruvbox'
+Plug 'joshdick/onedark.vim'
+
 Plug 'vim-test/vim-test'
 Plug 'tpope/vim-commentary'
 Plug 'sheerun/vim-polyglot'
-Plug 'mhartington/oceanic-next'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'morhetz/gruvbox'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'skywind3000/asyncrun.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+" LSP Resources
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 map <C-p> :Files<CR>
@@ -74,7 +79,6 @@ autocmd! BufWritePost $MYVIMRC call ReloadVimrc()
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
-set background=dark
 " Or if you have Neovim >= 0.1.5
 if (has("termguicolors"))
  set termguicolors
@@ -82,6 +86,9 @@ endif
 
 " Theme
 syntax enable
+set background=dark
+"colorscheme OceanicNext
+"colorscheme onedark
 colorscheme gruvbox
 
 " TextEdit might fail if hidden is not set.
