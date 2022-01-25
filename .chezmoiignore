@@ -3,4 +3,5 @@
 .zsh_history
 README.md
 Dockerfile
+*.local
 
