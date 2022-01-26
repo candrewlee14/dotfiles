@@ -11,41 +11,15 @@ set completeopt=menu,menuone,noselect
 " Set leader to comma
 let mapleader=","
 
-call plug#begin()
-" Color Schemes
-Plug 'rafi/awesome-vim-colorschemes'
-Plug 'mhartington/oceanic-next'
-Plug 'morhetz/gruvbox'
-Plug 'joshdick/onedark.vim'
-
-" Navigation
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-
-" Commands
-Plug 'vim-test/vim-test'
-Plug 'skywind3000/asyncrun.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-" Extra Appearance Features
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-signify'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-" File Navigation
-Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
-" Vista Sidebar
-Plug 'liuchengxu/vista.vim'
-" Syntax Highlighting
-Plug 'sheerun/vim-polyglot'
-
-call plug#end()
-
 " Set to open tree
-nnoremap <leader><space> <cmd>CHADopen<cr>
+nnoremap <leader><space> <cmd>NERDTreeToggle<cr>
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " Set to open Vista Sidebar
 nnoremap ;<space> <cmd>Vista!!<cr>
@@ -151,5 +125,25 @@ endif
 " Set termdebug
 let g:termdebug_wide=1
 
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "zig", "python", "c", "bash", "json" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+  ignore_install = { "javascript" }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    -- disable = { "c", "rust" },  -- list of language that will be disabled
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
 
-nnoremap <D-v> "+p
+EOF
+
+" Specific Local config
+if filereadable($HOME . "/.config/nvim/templates/general.vim.local")
+  source ~/.config/nvim/templates/general.vim.local
+endif

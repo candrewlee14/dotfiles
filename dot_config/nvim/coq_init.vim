@@ -1,20 +1,20 @@
+call plug#begin()
+    source $HOME/.config/nvim/templates/general_plugs.vim
+    " LSP resources
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'williamboman/nvim-lsp-installer'
+    Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+    Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+call plug#end()
+
 source $HOME/.config/nvim/templates/general.vim
-source $HOME/.config/nvim/templates/treesitter.vim
 source $HOME/.config/nvim/templates/lsp_keymap.vim
+
+set omnifunc=v:lua.vim.lsp.omnifunc
 
 " Theme
 set background=dark
 colorscheme onedark
-
-call plug#begin()
-" LSP resources
-Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/nvim-lsp-installer'
-Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-call plug#end()
-
-set omnifunc=v:lua.vim.lsp.omnifunc
 
 lua << EOF
 vim.g.coq_settings = {

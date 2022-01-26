@@ -1,4 +1,6 @@
-source $HOME/.config/nvim/templates/general.vim
+call plug#begin()
+    source $HOME/.config/nvim/templates/general.vim
+call plug#end()
 
 "Theme
 colorscheme gruvbox

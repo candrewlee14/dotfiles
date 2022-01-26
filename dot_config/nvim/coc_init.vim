@@ -1,8 +1,12 @@
+call plug#begin()
+    source $HOME/.config/nvim/templates/general_plugs.vim
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+call plug#end()
+
 source $HOME/.config/nvim/templates/general.vim
 
-call plug#begin()
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-call plug#end()
+" Theme
+colorscheme gruvbox
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
