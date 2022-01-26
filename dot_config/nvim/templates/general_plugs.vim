@@ -27,4 +27,4 @@ Plug 'preservim/nerdtree'
 Plug 'liuchengxu/vista.vim'
 " Syntax Highlighting
 Plug 'sheerun/vim-polyglot'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Experimental
