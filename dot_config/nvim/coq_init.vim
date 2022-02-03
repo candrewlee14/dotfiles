@@ -30,8 +30,7 @@ local lsp_installer = require("nvim-lsp-installer")
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-  local lsp_keymap = require('lsp_keymap')
-  local on_attach = lsp_keymap.attach(client, bufnr)
+local lsp_keymap = require('lsp_keymap')
 
 -- Register a handler that will be called for all installed servers.
 -- Alternatively, you may also register handlers on specific server instances instead (see example below).
@@ -50,7 +49,7 @@ lsp_installer.on_server_ready(function(server)
     -- server:setup(opts)
 
     -- With coq.nvim:
-    server:setup(coq.lsp_ensure_capabilities{on_attach = on_attach})
+    server:setup(coq.lsp_ensure_capabilities{on_attach = lsp_keymap.custom_attach})
 end)
 EOF
 

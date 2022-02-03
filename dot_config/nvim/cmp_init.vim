@@ -88,8 +88,6 @@ lua <<EOF
     -- Use an on_attach function to only map the following keys
     -- after the language server attaches to the current buffer
   local lsp_keymap = require('lsp_keymap')
-  local on_attach = lsp_keymap.attach(client, bufnr)
-
 
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
     lsp_installer.on_server_ready(function(server)
@@ -101,7 +99,7 @@ lua <<EOF
 
         -- This setup() function is exactly the same as lspconfig's setup function.
         -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-        server:setup {capabilities = capabilities, on_attach = on_attach}
+        server:setup {capabilities = capabilities, on_attach = lsp_keymap.custom_attach}
     end)
 EOF
 
