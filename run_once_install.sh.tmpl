@@ -1,13 +1,17 @@
 #!/usr/bin/env sh
 echo "Running installation script\n"
+curl -sS https://webinstall.dev/webi | bash
+webi bat curlie delta jq rg fd gh
 {{- if eq .chezmoi.os "linux" }}
+webi fish
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 {{-   if eq .chezmoi.osRelease.id "alpine" }}
 apk update
-apk add zsh neovim tmux bat perl
+apk add zsh tmux perl
 {{-   else if (or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.id "ubuntu")) }}
 sudo apt update
-sudo apt install zsh neovim tmux perl -y 
+sudo apt install zsh tmux perl -y 
 {{-   end  }}
 {{- else if eq .chezmoi.os "darwin" }}
-brew install zsh neovim tmux perl
+brew install neovim zsh tmux perl
 {{- end }}
