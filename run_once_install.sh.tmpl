@@ -12,8 +12,6 @@ echo "Running installations\n"
 curl -sS https://webinstall.dev/webi | bash
 ~/.local/bin/webi bat curlie delta jq rg fd gh
 {{- if eq .chezmoi.os "linux" }}
-~/.local/bin/webi fish
-curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 {{-   if eq .chezmoi.osRelease.id "alpine" }}
 apk update
 apk add zsh tmux perl bash
@@ -23,5 +21,4 @@ sudo apt install zsh tmux perl bash -y
 {{-   end  }}
 {{- else if eq .chezmoi.os "darwin" }}
 brew install neovim zsh tmux perl
-~/.local/bin/webi fish
 {{- end }}
