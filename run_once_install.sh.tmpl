@@ -1,26 +1,17 @@
 #!/usr/bin/env sh
 echo "Running installation script\n"
-echo "Installing bash\n"
 {{- if eq .chezmoi.os "linux" }}
-{{-   if eq .chezmoi.osRelease.id "alpine" }}
-apk update
-apk add bash
-{{-   else if (or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.id "ubuntu")) }}
-sudo apt update
-sudo apt bash -y 
-{{-   end }}
-{{- end }}
-echo "Running installations\n"
-# curl -sS https://webinstall.dev/webi | bash
-# ~/.local/bin/webi bat curlie delta jq rg fd gh
-{{- if eq .chezmoi.os "linux" }}
-{{-   if eq .chezmoi.osRelease.id "alpine" }}
+{{-   if hasKey .chezmoi.osRelease "id" }} # avoid M1 mac osRelease.id not exist
+{{-     if eq .chezmoi.osRelease.id "alpine" }}
 apk update
 apk add zsh tmux perl bash
-{{-   else if (or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.id "ubuntu")) }}
+{{-     else if (or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.id "ubuntu")) }}
 sudo apt update
 sudo apt install zsh tmux perl bash -y 
+{{-     end  }}
 {{-   end  }}
 {{- else if eq .chezmoi.os "darwin" }}
 brew install neovim zsh tmux perl
 {{- end }}
+# curl -sS https://webinstall.dev/webi | bash
+# ~/.local/bin/webi bat curlie delta jq rg fd gh
