@@ -1,16 +1,18 @@
 #!/usr/bin/env sh
 echo "Running installation script\n"
 echo "Installing bash\n"
-{{- if eq .chezmoi.osRelease.id "alpine" }}
+{{- if eq .chezmoi.os "linux" }}
+{{-   if eq .chezmoi.osRelease.id "alpine" }}
 apk update
 apk add bash
-{{- else if (or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.id "ubuntu")) }}
+{{-   else if (or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.id "ubuntu")) }}
 sudo apt update
 sudo apt bash -y 
+{{-   end }}
 {{- end }}
 echo "Running installations\n"
-curl -sS https://webinstall.dev/webi | bash
-~/.local/bin/webi bat curlie delta jq rg fd gh
+# curl -sS https://webinstall.dev/webi | bash
+# ~/.local/bin/webi bat curlie delta jq rg fd gh
 {{- if eq .chezmoi.os "linux" }}
 {{-   if eq .chezmoi.osRelease.id "alpine" }}
 apk update
