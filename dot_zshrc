@@ -116,6 +116,9 @@ nvimp() {
     nvim -u ~/.config/nvim/cmp_init.vim $1
 }
 
+# Add path to webman (package manager) bin
+path=("$HOME/.webman/bin" $path)
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
