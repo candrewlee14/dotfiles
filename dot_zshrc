@@ -124,5 +124,12 @@ path=("$HOME/.webman/bin" $path)
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+[[ -f ~/.antigen.zsh ]] && source ~/.antigen.zsh
+antigen bundle 'wfxr/forgit'
+antigen apply
+
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+
+
