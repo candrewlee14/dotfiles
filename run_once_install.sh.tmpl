@@ -24,5 +24,8 @@ curl https://raw.githubusercontent.com/candrewlee14/webman/main/scripts/install.
 git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 git clone https://github.com/candrewlee14/astronvim_config ~/.config/nvim/lua/user
 
-nvim --headless +q
-
+if test -x ~/.webman/bin/nvim; then
+  ~/.webman/bin/nvim --headless +q
+else
+  echo "~/.webman/bin/nvim does not exist or is not executable"
+fi
