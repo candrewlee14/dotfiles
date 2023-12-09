@@ -2,19 +2,27 @@
 echo "Running installation script\n"
 {{- if eq .osid "linux-alpine" }}
 apk update
-apk add zsh tmux perl bash
+apk add bash fish
 {{- else if (or (eq .osid "debian") (eq .osid "ubuntu")) }}
+sudo apt-add-repository ppa:fish-shell/release-3
 sudo apt update
-sudo apt install zsh tmux perl bash -y 
+sudo apt install bash fish -y 
 {{- else if eq .osid "darwin" }}
-brew install neovim zsh tmux perl
+brew install neovim tmux perl fish
 {{- end }}
 
-git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
-curl -L git.io/antigen > ~/.antigen.zsh
+chsh -s $(which fish)
 
 curl https://raw.githubusercontent.com/candrewlee14/webman/main/scripts/install.sh | sh
 ~/.webman/bin/webman group add modern-unix --all || echo "Not all modern-unix packages installed successfully"
 ~/.webman/bin/webman add fzf || echo "Fzf install failed"
 ~/.webman/bin/webman add zellij || echo "zellij install failed"
 ~/.webman/bin/webman add nvim || echo "nvim install failed"
+
+/usr/bin/env fish ~/.config/fish/.on_install.fish
+
+git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+git clone https://github.com/candrewlee14/astronvim_config ~/.config/nvim/lua/user
+
+nvim --headless +q
+
