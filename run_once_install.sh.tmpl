@@ -7,11 +7,12 @@ apk add bash fish
 sudo apt-add-repository ppa:fish-shell/release-3
 sudo apt update
 sudo apt install bash fish -y 
+chsh -s $(which fish)
 {{- else if eq .osid "darwin" }}
 brew install neovim tmux perl fish
+chsh -s $(which fish)
 {{- end }}
 
-chsh -s $(which fish)
 
 curl https://raw.githubusercontent.com/candrewlee14/webman/main/scripts/install.sh | sh
 ~/.webman/bin/webman group add modern-unix --all || echo "Not all modern-unix packages installed successfully"
