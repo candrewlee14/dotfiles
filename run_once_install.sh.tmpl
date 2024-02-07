@@ -1,22 +1,29 @@
 #!/usr/bin/env sh
 echo "Running installation script\n"
-{{- if eq .osid "linux-alpine" }}
+{{- if eq .chezmoi.os "linux" }}
+{{- if eq .chezmoi.osRelease.id "alpine" }}
 apk update
-apk add bash fish
-{{- else if (eq .osid "debian" "ubuntu" "zorin") }}
+apk add curl bash fish
+{{- else if (eq .chezmoi.osRelease.id "debian" "ubuntu" "zorin") }}
 sudo apt-add-repository ppa:fish-shell/release-3
 sudo apt update
-sudo apt install bash fish -y 
+sudo apt install curl bash fish -y 
+{{- else }}
+echo "Linux OS release not recognized"
+exit 1
+{{- end }}
 chsh -s $(which fish)
 {{- else if eq .osid "darwin" }}
-brew install neovim tmux perl fish
+brew install curl fish bash
 chsh -s $(which fish)
 {{- end }}
 
+bash <(curl https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh)
 
 curl https://raw.githubusercontent.com/candrewlee14/webman/main/scripts/install.sh | sh
 ~/.webman/bin/webman group add modern-unix --all || echo "Not all modern-unix packages installed successfully"
-~/.webman/bin/webman add fzf || echo "Fzf install failed"
+~/.webman/bin/webman add zozide || echo "zoxide install failed"
+~/.webman/bin/webman add fzf || echo "fzf install failed"
 ~/.webman/bin/webman add zellij || echo "zellij install failed"
 ~/.webman/bin/webman add nvim || echo "nvim install failed"
 
