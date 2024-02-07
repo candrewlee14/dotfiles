@@ -12,13 +12,11 @@ sudo apt install curl bash fish -y
 echo "Linux OS release not recognized"
 exit 1
 {{- end }}
-chsh -s $(which fish)
+chsh -s $(which fish) || echo "chsh failed"
 {{- else if eq .osid "darwin" }}
 brew install curl fish bash
-chsh -s $(which fish)
+chsh -s $(which fish) || echo "chsh failed"
 {{- end }}
-
-bash <(curl https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh)
 
 curl https://raw.githubusercontent.com/candrewlee14/webman/main/scripts/install.sh | sh
 ~/.webman/bin/webman group add modern-unix --all || echo "Not all modern-unix packages installed successfully"

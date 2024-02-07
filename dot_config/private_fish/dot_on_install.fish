@@ -3,5 +3,9 @@ curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fi
 fisher install IlanCosman/tide@v6
 fisher install PatrickF1/fzf.fish
 
+fish_add_path ~/.webman/bin/
+
 bash (curl https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh | psub)
-atuin import auto
+if type -q $atuin
+    atuin import auto
+end
