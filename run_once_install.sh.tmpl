@@ -3,7 +3,7 @@ echo "Running installation script\n"
 {{- if eq .osid "linux-alpine" }}
 apk update
 apk add bash fish
-{{- else if (or (eq .osid "debian") (eq .osid "ubuntu")) }}
+{{- else if (eq .osid "debian" "ubuntu" "zorin") }}
 sudo apt-add-repository ppa:fish-shell/release-3
 sudo apt update
 sudo apt install bash fish -y 
