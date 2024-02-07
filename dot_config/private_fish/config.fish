@@ -1,7 +1,11 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    zoxide init fish | source
-    atuin init fish | source
+    if type -q $zoxide
+        zoxide init fish | source
+    end
+    if type -q $atuin
+        atuin init fish | source
+    end
 
     if test -f ~/.config/fish/config.fish.local
         source ~/.config/fish/config.fish.local
