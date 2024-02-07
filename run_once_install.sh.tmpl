@@ -27,7 +27,10 @@ curl https://raw.githubusercontent.com/candrewlee14/webman/main/scripts/install.
 
 /usr/bin/env fish ~/.config/fish/.on_install.fish
 
-git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+echo "Moving current nvim config to nvim.bak"
+mv ~/.config/nvim ~/.config/nvim.bak || echo ""
+echo "Installing AstroNvim config"
+git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 git clone https://github.com/candrewlee14/astronvim_config ~/.config/nvim/lua/user
 
 if test -x ~/.webman/bin/nvim; then
