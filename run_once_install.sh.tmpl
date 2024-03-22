@@ -3,7 +3,7 @@ echo "Running installation script\n"
 {{- if eq .chezmoi.os "linux" }}
 {{- if eq .chezmoi.osRelease.id "alpine" }}
 apk update
-apk add curl bash fish
+apk add curl bash fish grep
 {{- else if (eq .chezmoi.osRelease.id "debian" "ubuntu" "zorin") }}
 sudo apt-add-repository ppa:fish-shell/release-3
 sudo apt update
@@ -20,15 +20,16 @@ chsh -s $(which fish) || echo "chsh failed"
 
 curl https://raw.githubusercontent.com/candrewlee14/webman/main/scripts/install.sh | sh
 ~/.webman/bin/webman group add modern-unix --all || echo "Not all modern-unix packages installed successfully"
-~/.webman/bin/webman add zozide || echo "zoxide install failed"
 ~/.webman/bin/webman add fzf || echo "fzf install failed"
 ~/.webman/bin/webman add zellij || echo "zellij install failed"
 ~/.webman/bin/webman add nvim || echo "nvim install failed"
 
 /usr/bin/env fish ~/.config/fish/.on_install.fish
 
-echo "Moving current nvim config to nvim.bak"
-mv ~/.config/nvim ~/.config/nvim.bak || echo ""
+if test -x ~/.config/nvim/; then
+  echo "Moving current nvim config to nvim.bak"
+  mv ~/.config/nvim ~/.config/nvim.bak || echo ""
+fi
 echo "Installing AstroNvim config"
 git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 git clone https://github.com/candrewlee14/astronvim_config ~/.config/nvim/lua/user
