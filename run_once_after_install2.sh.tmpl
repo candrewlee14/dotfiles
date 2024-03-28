@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
-echo "[-] Running installation script [-]"
+echo "[-] Running post-installation script [-]"
+
 
 {{- if eq .chezmoi.os "linux" }}
 {{- if eq .chezmoi.osRelease.id "alpine" }}
@@ -9,19 +10,16 @@ echo "Alpine Linux detected"
 {{- else if (eq .chezmoi.osRelease.id "debian" "ubuntu" "zorin") }}
 
 echo "Debian-based Linux detected"
-echo "\n[-] Adding fish package repository [-]"
-sudo apt-add-repository ppa:fish-shell/release-3
-sudo apt install -y fish
 
 {{- else }}
 echo "Linux OS release not recognized"
 exit 1
 {{- end }}
 
-echo "\n[-] Downloading Nerd Fonts [-]"
 if test -f ~/.fonts/GeistMonoNerdFontMono-Regular.otf; then
-  echo "GeistMono already installed"
+  echo "GeistMono Nerd Font already installed"
 else
+  echo "\n[-] Downloading Nerd Fonts [-]"
   curl -L -O https://github.com/ryanoasis/nerd-fonts/releases/latest/download/GeistMono.zip && \
   unzip GeistMono.zip -d ~/.fonts && \
   rm GeistMono.zip && \
@@ -29,38 +27,48 @@ else
   echo "Failed to download GeistMono.zip"
 fi
 
-echo "\n[-] Setting default shell to fish [-]"
-chsh -s $(which fish) || echo "chsh failed"
-
 {{- else if eq .osid "darwin" }}
 
 echo "macOS detected"
-echo "\n[-] Setting default shell to fish [-]"
-chsh -s $(which fish) || echo "chsh failed"
+
+if test -f ~/Library/Fonts/GeistMonoNerdFontMono-Regular.otf; then
+  echo "GeistMono Nerd Font already installed"
+else
+  echo "\n[-] Downloading Nerd Fonts [-]"
+  curl -L -O https://github.com/ryanoasis/nerd-fonts/releases/latest/download/GeistMono.zip && \
+  unzip GeistMono.zip -d ~/Library/Fonts && \
+  rm GeistMono.zip && \
+  echo "GeistMono installed" || \
+  echo "Failed to download GeistMono.zip"
+fi
 
 {{- end }}
 
-echo "\n[-] Installing webman [-]"
-if test -x ~/.webman/bin/webman; then
-  echo "webman already installed"
+# check if $SHELL is fish already
+
+if echo $SHELL | grep "fish" ; then
+  echo "Fish shell already set up"
 else
-  curl https://raw.githubusercontent.com/candrewlee14/webman/main/scripts/install.sh | sh
+  echo "\n[-] Setting default shell to fish [-]"
+  chsh -s $(which fish) || echo "chsh failed"
 fi
 
-echo "\n[-] Installing nvim [-]"
+
+
 if test -x ~/.webman/bin/nvim; then
   echo "nvim already installed"
 else
+  echo "\n[-] Installing nvim [-]"
   ~/.webman/bin/webman add nvim
 fi
 
 echo "\n[-] Running fish install setup [-]"
 /usr/bin/env fish ~/.config/fish/.on_install.fish
 
-echo "\n[-] Installing AstroNvim [-]"
 if test -f ~/.config/nvim/config.ld ; then
   echo "Already installed AstroNvim"
 else
+  echo "\n[-] Installing AstroNvim [-]"
   if test -d ~/.config/nvim/ ; then
     echo "Moving current nvim config to nvim.bak"
     mv ~/.config/nvim ~/.config/nvim.bak || echo ""
