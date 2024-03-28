@@ -8,3 +8,8 @@
     url = "https://github.com/junegunn/fzf/archive/master.tar.gz"
     exact = true
     stripComponents = 1
+[".config/gdb/gef"]
+    type = "archive"
+    url = "https://github.com/hugsy/gef/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
