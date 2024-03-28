@@ -1,12 +1,12 @@
 # dotfiles
 My config for dotfiles.
-Run `docker build -t test-devenv . && docker run -it test-devenv` to test them out!
+Clone and run `docker build -t test-devenv . && docker run -it test-devenv` to test them out!
 
 These dotfiles are managed using [chezmoi](https://www.chezmoi.io/).
 
 ## Setup
 
-**Prereqs**: `git`, `curl`, and on MacOS: `brew`
+**Prereqs**: `git`, `curl`
 
 If you'd like to use these files long-term, fork this project to manage your own configuration. Then:
  - Change the `email` and `name` in `.chezmoi.toml.tmpl` to your own info.
