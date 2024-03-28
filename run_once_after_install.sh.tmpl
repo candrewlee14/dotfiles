@@ -1,0 +1,76 @@
+#!/usr/bin/env sh
+
+echo "[-] Running installation script [-]"
+
+{{- if eq .chezmoi.os "linux" }}
+{{- if eq .chezmoi.osRelease.id "alpine" }}
+
+echo "Alpine Linux detected"
+{{- else if (eq .chezmoi.osRelease.id "debian" "ubuntu" "zorin") }}
+
+echo "Debian-based Linux detected"
+echo "\n[-] Adding fish package repository [-]"
+sudo apt-add-repository ppa:fish-shell/release-3
+sudo apt install -y fish
+
+{{- else }}
+echo "Linux OS release not recognized"
+exit 1
+{{- end }}
+
+echo "\n[-] Downloading Nerd Fonts [-]"
+if test -f ~/.fonts/GeistMonoNerdFontMono-Regular.otf; then
+  echo "GeistMono already installed"
+else
+  curl -L -O https://github.com/ryanoasis/nerd-fonts/releases/latest/download/GeistMono.zip && \
+  unzip GeistMono.zip -d ~/.fonts && \
+  rm GeistMono.zip && \
+  fc-cache -fv || \
+  echo "Failed to download GeistMono.zip"
+fi
+
+echo "\n[-] Setting default shell to fish [-]"
+chsh -s $(which fish) || echo "chsh failed"
+
+{{- else if eq .osid "darwin" }}
+
+echo "macOS detected"
+echo "\n[-] Setting default shell to fish [-]"
+chsh -s $(which fish) || echo "chsh failed"
+
+{{- end }}
+
+echo "\n[-] Installing webman [-]"
+if test -x ~/.webman/bin/webman; then
+  echo "webman already installed"
+else
+  curl https://raw.githubusercontent.com/candrewlee14/webman/main/scripts/install.sh | sh
+fi
+
+echo "\n[-] Installing nvim [-]"
+if test -x ~/.webman/bin/nvim; then
+  echo "nvim already installed"
+else
+  ~/.webman/bin/webman add nvim
+fi
+
+echo "\n[-] Running fish install setup [-]"
+/usr/bin/env fish ~/.config/fish/.on_install.fish
+
+echo "\n[-] Installing AstroNvim [-]"
+if test -f ~/.config/nvim/config.ld ; then
+  echo "Already installed AstroNvim"
+else
+  if test -d ~/.config/nvim/ ; then
+    echo "Moving current nvim config to nvim.bak"
+    mv ~/.config/nvim ~/.config/nvim.bak || echo ""
+  fi
+  git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+  git clone https://github.com/candrewlee14/astronvim_config ~/.config/nvim/lua/user
+
+  if test -x ~/.webman/bin/nvim ; then
+    ~/.webman/bin/nvim --headless +q
+  else
+    echo "~/.webman/bin/nvim does not exist or is not executable"
+  fi
+fi

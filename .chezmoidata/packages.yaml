@@ -1,0 +1,26 @@
+packages:
+  darwin:
+    brews:
+      - git
+      - curl
+      - fish
+  linux:
+    apts:
+      - git
+      - curl 
+      - bash 
+      - fish 
+    apks:
+      - git
+      - curl
+      - bash
+      - fish
+  webman:
+    pkgs:
+      - bat
+      - lsd
+      - fzf
+      - zellij
+      - nvim
+    groups:
+      - modern-unix
