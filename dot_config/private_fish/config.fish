@@ -10,7 +10,12 @@ if status is-interactive
     if test -f ~/.config/fish/config.fish.local
         source ~/.config/fish/config.fish.local
     end
+    if test -f ~/.config/fish/config.local.fish
+        source ~/.config/fish/config.local.fish
+    end
 end
+
+alias ls="lsd"
 
 fish_add_path $HOME/.webman/bin
 
