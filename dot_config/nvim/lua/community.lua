@@ -10,18 +10,38 @@ return {
 
   { import = "astrocommunity.colorscheme.catppuccin" },
   -- { import = "astrocommunity.editing-support.yanky-nvim" },
-  { import = "astrocommunity.diagnostics.trouble-nvim"},
+  { import = "astrocommunity.diagnostics.trouble-nvim" },
   { import = "astrocommunity.editing-support.todo-comments-nvim" },
   { import = "astrocommunity.editing-support.multicursors-nvim" },
-  { import = "astrocommunity.lsp.lsp-signature-nvim" },
+  -- { import = "astrocommunity.lsp.lsp-signature-nvim" },
   { import = "astrocommunity.lsp.inc-rename-nvim" },
   { import = "astrocommunity.markdown-and-latex.glow-nvim" },
   -- { import = "astrocommunity.motion.flash-nvim" },
   { import = "astrocommunity.scrolling.mini-animate" },
-  { import = "astrocommunity.syntax.vim-sandwich" },
   { import = "astrocommunity.test.neotest" },
+  { import = "astrocommunity.utility.noice-nvim" },
   -- { import = "astrocommunity.workflow.hardtime-nvim" },
-
+  { import = "astrocommunity.motion.nvim-surround" },
+  {
+    "kylechui/nvim-surround",
+    opts = {
+      keymaps = {
+        normal = '<leader>sa',
+        normal_cur = false,
+        normal_line = false,
+        normal_cur_line = false,
+        visual = '<leader>s',
+        visual_line = '<leader>S',
+        delete = '<leader>sd',
+        change = '<leader>sr',
+      },
+      aliases = {
+        ['i'] = ']', -- Index
+        ['r'] = ')', -- Round
+        ['b'] = '}', -- Brackets
+      },
+    },
+  },
   { import = "astrocommunity.completion.copilot-lua" },
   { -- further customize the options set by the community
     "zbirenbaum/copilot.lua",

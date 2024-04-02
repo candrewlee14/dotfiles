@@ -5,4 +5,5 @@ README.md
 Dockerfile
 *.local
 *.local.*
+*/lazy-lock.json
 
