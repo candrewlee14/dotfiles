@@ -65,16 +65,10 @@ fi
 echo "\n[-] Running fish install setup [-]"
 /usr/bin/env fish ~/.config/fish/.on_install.fish
 
-if test -f ~/.config/nvim/config.ld ; then
+if test -f ~/.config/nvim/README.md ; then
   echo "Already installed AstroNvim"
 else
   echo "\n[-] Installing AstroNvim [-]"
-  if test -d ~/.config/nvim/ ; then
-    echo "Moving current nvim config to nvim.bak"
-    mv ~/.config/nvim ~/.config/nvim.bak || echo ""
-  fi
-  git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
-  git clone https://github.com/candrewlee14/astronvim_config ~/.config/nvim/lua/user
 
   if test -x ~/.webman/bin/nvim ; then
     ~/.webman/bin/nvim --headless +q
