@@ -7,6 +7,8 @@ echo "[-] Running post-installation script [-]"
 {{- if eq .chezmoi.osRelease.id "alpine" }}
 
 echo "Alpine Linux detected"
+{{- else if eq .chezmoi.osRelease.id "fedora" }}
+echo "Fedora Linux detected"
 {{- else if (eq .chezmoi.osRelease.id "debian" "ubuntu" "zorin") }}
 
 echo "Debian-based Linux detected"

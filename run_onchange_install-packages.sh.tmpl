@@ -11,6 +11,10 @@ apk update
 {{ range .packages.linux.apks -}}
 apk add {{ . | quote }}
 {{ end -}}
+{{- else if eq .chezmoi.osRelease.idLike "fedora" }}
+{{ range .packages.linux.dnfs -}}
+sudo dnf install -y {{ . | quote }}
+{{ end -}}
 {{- else if (eq .chezmoi.osRelease.id "debian" "ubuntu" "zorin") }}
 echo "[-] Updating Apt packages [-]"
 sudo apt update

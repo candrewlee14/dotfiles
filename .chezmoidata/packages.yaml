@@ -5,6 +5,11 @@ packages:
       - curl
       - fish
   linux:
+    dnfs:
+      - git-all
+      - curl
+      - bash
+      - fish
     apts:
       - git
       - curl 
