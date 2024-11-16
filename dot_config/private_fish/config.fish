@@ -1,10 +1,14 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
+    functions -q _insert_jj_after_git; and _insert_jj_after_git
     if type -q zoxide
         zoxide init fish | source
     end
     if type -q atuin
         atuin init fish | source
+    end
+    if type -q direnv
+        direnv hook fish | source
     end
 
     if test -f ~/.config/fish/config.fish.local
@@ -16,8 +20,6 @@ if status is-interactive
 end
 
 alias ls="lsd"
-
-fish_add_path $HOME/.webman/bin
 
 set -gx EDITOR nvim
 

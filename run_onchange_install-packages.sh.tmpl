@@ -26,7 +26,7 @@ sudo apt install -y {{ . | quote }}
 {{- else if eq .osid "darwin" }}
 echo "[-] Updating brews [-]"
 {{ range .packages.darwin.brews -}}
-brew install  {{ . | quote }}
+/opt/homebrew/bin/brew install  {{ . | quote }}
 {{ end -}}
 {{ end -}}
 
