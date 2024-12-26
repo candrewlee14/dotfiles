@@ -28,6 +28,11 @@ echo "[-] Updating brews [-]"
 {{ range .packages.darwin.brews -}}
 /opt/homebrew/bin/brew install  {{ . | quote }}
 {{ end -}}
+
+echo "[-] Updating casks [-]"
+{{ range .packages.darwin.casks -}}
+/opt/homebrew/bin/brew install --cask {{ . | quote }}
+{{ end -}}
 {{ end -}}
 
 echo "[-] Updating Webman groups [-]"

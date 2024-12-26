@@ -5,6 +5,8 @@ packages:
       - curl
       - fish
       - direnv
+    casks:
+      - git-credential-manager
   linux:
     dnfs:
       - git-all
