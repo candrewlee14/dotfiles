@@ -1,9 +1,5 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    functions -q _insert_jj_after_git; and _insert_jj_after_git
-    if set -q GHOSTTY_RESOURCES_DIR
-        source "$GHOSTTY_RESOURCES_DIR/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish"
-    end
     if type -q zoxide
         zoxide init fish | source
     end
@@ -24,4 +20,7 @@ end
 
 alias ls="lsd"
 
+fish_add_path $HOME/.webman/bin
+
 set -gx EDITOR nvim
+

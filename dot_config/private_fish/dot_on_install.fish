@@ -10,6 +10,7 @@ if not functions -q fisher
 end
 
 fish_add_path ~/.webman/bin/
+set -gx --path XDG_DATA_DIRS $XDG_DATA_DIRS:$HOME/.local/share/
 
 # if atuin is not installed, install it
 if not type -q atuin
@@ -20,3 +21,5 @@ if not type -q atuin
         atuin import auto
     end
 end
+
+
