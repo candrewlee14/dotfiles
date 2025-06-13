@@ -5,7 +5,7 @@ RUN apt-get update && \
     apt update && \
     apt install -y git curl fish sudo && \
     rm -rf /var/lib/apt/lists/*
-RUN sh -c "$(curl -fsLS get.chezmoi.io)"
+RUN sh -c "$(curl -fsLS get.chezmoi.io/lb)"
 COPY . /root/.local/share/chezmoi/
 
 RUN chezmoi init --apply

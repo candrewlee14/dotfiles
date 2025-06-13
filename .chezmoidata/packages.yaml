@@ -7,6 +7,9 @@ packages:
       - direnv
     casks:
       - git-credential-manager
+      - ghostty
+      - orbstack
+      - raycast
   linux:
     dnfs:
       - git-all
@@ -26,13 +29,25 @@ packages:
       - bash
       - fish
       - direnv
-  webman:
-    pkgs:
-      - bat
-      - lsd
-      - fzf
-      - zellij
-      - nvim
-      - jj
-    groups:
-      - modern-unix
+  mise:
+    - jj
+    - lsd
+    - fzf
+    - zellij
+    - neovim
+    - delta
+    - bat
+    - fd
+    - rg
+    - hyperfine
+    - yazi
+    - jq
+    - btop
+    - bottom
+    - uv
+    - dust
+    - glow
+    - lazygit
+    - lazydocker
+    - zoxide
+

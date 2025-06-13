@@ -35,22 +35,7 @@ echo "[-] Updating casks [-]"
 {{ end -}}
 {{ end -}}
 
-echo "[-] Updating Webman groups [-]"
-
-if test -x ~/.webman/bin/webman; then
-  echo "webman already installed"
-else
-  echo "\n[-] Installing webman [-]"
-  curl https://raw.githubusercontent.com/candrewlee14/webman/main/scripts/install.sh | sh
-fi
-
-~/.webman/bin/webman upgrade webman
-
-{{ range .packages.webman.groups -}}
-~/.webman/bin/webman group upgrade {{ . | quote }} -a
-{{ end -}}
-
-echo "[-] Updating Webman packages [-]"
-{{ range .packages.webman.pkgs -}}
-~/.webman/bin/webman upgrade {{ . | quote }}
+echo "[-] Updating Mise tools [-]"
+{{ range .packages.mise -}}
+~/.local/bin/mise use --global {{ . | quote }}
 {{ end -}}

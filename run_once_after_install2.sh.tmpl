@@ -57,26 +57,5 @@ else
   chsh -s $(which fish) || echo "chsh failed"
 fi
 
-
-
-if test -x ~/.webman/bin/nvim; then
-  echo "nvim already installed"
-else
-  echo "\n[-] Installing nvim [-]"
-  ~/.webman/bin/webman add nvim
-fi
-
 echo "\n[-] Running fish install setup [-]"
 /usr/bin/env fish ~/.config/fish/.on_install.fish
-
-if test -f ~/.config/nvim/README.md ; then
-  echo "Already installed AstroNvim"
-else
-  echo "\n[-] Installing AstroNvim [-]"
-
-  if test -x ~/.webman/bin/nvim ; then
-    ~/.webman/bin/nvim --headless +q
-  else
-    echo "~/.webman/bin/nvim does not exist or is not executable"
-  fi
-fi

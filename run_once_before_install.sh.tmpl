@@ -42,9 +42,9 @@ fi
 
 {{- end }}
 
-echo "\n[-] Installing webman [-]"
-if test -x ~/.webman/bin/webman; then
-  echo "webman already installed"
+echo "\n[-] Installing mise [-]"
+if test -x ~/.local/bin/mise; then
+  echo "mise already installed"
 else
-  curl https://raw.githubusercontent.com/candrewlee14/webman/main/scripts/install.sh | sh
+  curl https://mise.run | sh
 fi

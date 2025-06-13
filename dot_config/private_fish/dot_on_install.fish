@@ -9,7 +9,7 @@ if not functions -q fisher
     end
 end
 
-fish_add_path ~/.webman/bin/
+fish_add_path ~/.local/bin/
 set -gx --path XDG_DATA_DIRS $XDG_DATA_DIRS:$HOME/.local/share/
 
 # if atuin is not installed, install it

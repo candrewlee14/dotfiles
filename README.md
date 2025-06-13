@@ -10,9 +10,12 @@ These dotfiles are managed using [chezmoi](https://www.chezmoi.io/).
 
 If you'd like to use these files long-term, fork this project to manage your own configuration. Then:
  - Change the `email` and `name` in `.chezmoi.toml.tmpl` to your own info.
- - Install with `sh -c "$(curl -fsLS git.io/chezmoi)" -- init --apply <YOUR_USERNAME> && fish`
+ - Install with `sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- -b $HOME/.local/bin init --apply <YOUR_USERNAME> && fish`
 
-Personally, I run `sh -c "$(curl -fsLS git.io/chezmoi)" -- init --apply candrewlee14 && fish`
+Personally, I run 
+```bash
+sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- -b $HOME/.local/bin init --apply candrewlee14 && fish
+```
 
 ## Information
 
@@ -27,9 +30,7 @@ Here are a few of the primary tools installed here:
     - **Post-Install**: run `tide configure` to change the appearance of the prompt
 - [atuin](https://github.com/atuinsh/atuin) - helpful shell history
     - by default, it rebinds `ctrl+r` and `up` to use `atuin`
-- [webman](https://github.com/candrewlee14/webman) - cross-platform binary package manager
-    - run `webman upgrade nvim` to upgrade to the latest `nvim`, for example
-    - run `webman switch node` to use other versions of packages
+- [mise](https://mise.jdx.dev) - a polyglot tool version manager
 - [nvim](https://github.com/neovim/neovim) - a better vim-fork
     - we use [AstroNvim](https://astronvim.com/) to get an IDE-like terminal editor experience
 - [zellij](https://github.com/zellij-org/zellij) - a modern `tmux` replacement
