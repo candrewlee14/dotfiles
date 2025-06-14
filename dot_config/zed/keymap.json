@@ -1,0 +1,152 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "bindings": {
+      // put key-bindings here if you want them to work in normal & visual mode
+      // Git
+      "space g h d": "editor::ToggleSelectedDiffHunks",
+      "space g s": "git_panel::ToggleFocus",
+
+      // Toggle inlay hints
+      "space t i": "editor::ToggleInlayHints",
+
+      // Toggle soft wrap
+      "space u w": "editor::ToggleSoftWrap",
+
+      // Open markdown preview
+      "space m p": "markdown::OpenPreview",
+      "space m P": "markdown::OpenPreviewToTheSide",
+
+      // Open recent project
+      "space f p": "projects::OpenRecent",
+      // Search word under cursor
+      "space s w": "pane::DeploySearch",
+
+      "space f w": "pane::DeploySearch",
+
+      // Chat with AI
+      "space a c": "agent::ToggleFocus",
+      // Go to file with `gf`
+      "g f": "editor::OpenExcerpts"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      // put key-bindings here if you want them to work only in normal mode
+      // Window movement bindings
+      // Ctrl jklk to move between panes
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+
+      "ctrl-/": ["editor::ToggleComments", { "advance_downwards": false }],
+      "space c": "pane::CloseActiveItem",
+      "space w": "workspace::Save",
+      "space e": "workspace::ToggleLeftDock",
+      "space l r": "editor::Rename",
+      "space l a": "editor::ToggleCodeActions",
+      "space .": "editor::ToggleCodeActions",
+      "g d": "editor::GoToDefinition",
+      "g D": "editor::GoToDefinitionSplit",
+      "g i": "editor::GoToImplementation",
+      "g I": "editor::GoToImplementationSplit",
+      "g t": "editor::GoToTypeDefinition",
+      "g T": "editor::GoToTypeDefinitionSplit",
+      "g r": "editor::FindAllReferences",
+      "] d": "editor::GoToDiagnostic",
+      "[ d": "editor::GoToPreviousDiagnostic",
+      "s s": "outline::Toggle",
+      "s S": "project_symbols::Toggle",
+      "space x x": "diagnostics::Deploy",
+      "] h": "editor::GoToHunk",
+      "[ h": "editor::GoToPreviousHunk",
+      "space f f": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "EmptyPane || SharedScreen",
+    "bindings": {
+      // Open file finder
+      "space f f": "file_finder::Toggle",
+      // Open recent project
+      "space f p": "projects::OpenRecent"
+    }
+  },
+  // Comment code
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      // visual, visual line & visual block modes
+      "g c": "editor::ToggleComments",
+      "ctrl-d": "vim::SelectNext"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      // "j k": ["workspace::SendKeystrokes", "escape"]
+      "shift-alt-k": "editor::AddSelectionAbove", // Insert Cursor Above
+      "shift-alt-j": "editor::AddSelectionBelow", // Insert Cursor Below
+      "ctrl-l": "editor::AcceptEditPrediction"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {}
+  },
+  // Toggle terminal
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-\\": "terminal_panel::ToggleFocus"
+    }
+  },
+  // Panel nagivation
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w l": "workspace::ActivatePaneRight",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w j": "workspace::ActivatePaneDown"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "a": "project_panel::NewFile",
+      "x": "project_panel::Cut",
+      "y": "project_panel::Copy",
+      "Y": "workspace::CopyRelativePath",
+      "d": "project_panel::Delete",
+      "p": "project_panel::Paste",
+      "r": "project_panel::Rename",
+
+      // Navigate between panel
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+
+      "space e": "workspace::ToggleLeftDock"
+    }
+  }
+]
