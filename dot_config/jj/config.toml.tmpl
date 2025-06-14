@@ -6,6 +6,19 @@ email = {{ .email | quote }}
 editor = "nvim"
 merge-editor = "vscode"
 pager = "delta"
+diff-formatter=":git"
 
-[ui.diff]
-format = "git"
+[aliases]
+
+# tug - move the nearest bookmark to the nearest non-empty change at or before @
+tug = ["bookmark", "move", "--from", "closest_bookmark(@)", "--to", "closest_nonempty(@)"]
+
+# closestbookmark - show the name of the nearest bookmark at or before @
+closestbookmark = ["util", "exec", "--", "bash", "-c", """
+jj log --no-graph -r 'closest_bookmark(@)' -T 'stringify(local_bookmarks.map(|b| b.name()).join("\n")).first_line()++"\n"'
+""", ""]
+
+[revset-aliases]
+
+'closest_bookmark(to)' = 'heads(::to & bookmarks())'
+'closest_nonempty(to)' = 'heads(::to ~ empty())'
