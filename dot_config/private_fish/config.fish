@@ -1,5 +1,11 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
+    
+    # Activate mise first so tools it manages (zoxide, atuin, etc.) are on PATH
+    if type -q mise
+        mise activate fish | source
+    end
+
     if type -q zoxide
         zoxide init fish | source
     end
@@ -8,10 +14,6 @@ if status is-interactive
     end
     if type -q direnv
         direnv hook fish | source
-    end
-
-    if type -q mise
-        mise activate fish | source
     end
 
     alias ls="lsd"
