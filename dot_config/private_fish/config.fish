@@ -1,6 +1,12 @@
+# Nix
+if test -e /nix/var/nix/profiles/default/etc/profile.d/nix.fish
+    source /nix/var/nix/profiles/default/etc/profile.d/nix.fish
+end
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    
+    set -g fish_greeting
+
     # Activate mise first so tools it manages (zoxide, atuin, etc.) are on PATH
     if type -q mise
         mise activate fish | source
