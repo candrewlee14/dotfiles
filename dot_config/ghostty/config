@@ -27,3 +27,7 @@ foreground = e5e5e5
 cursor-color = f8f8f0
 selection-background = 5a5c62
 selection-foreground = ece7e7
+keybind = shift+enter=text:\n
+
+auto-update-channel = tip
+

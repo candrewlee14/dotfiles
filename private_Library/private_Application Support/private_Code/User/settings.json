@@ -1,0 +1,34 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "workbench.colorTheme": "Catppuccin Frappé",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "editor.formatOnSave": true,
+    "diffEditor.ignoreTrimWhitespace": true,
+    "git.autofetch": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+    "githubPullRequests.pullBranch": "never",
+    "claudeCode.preferredLocation": "panel",
+    "snowflake.connectionsConfigFile": "/Users/andrewlee/.snowflake/connections.toml","remote.SSH.remotePlatform": {"coder-vscode.code.redo.run--alee--alee-1.main":"linux"},"remote.SSH.connectTimeout": 1800,
+    "git.path": "/Users/alee/.git-ai/bin/git",
+    "chat.hookFilesLocations": {
+        "~/.github/hooks": true
+    },
+    "chat.useHooks": true,
+    "redhat.telemetry.enabled": true,
+    "vs-kubernetes": {
+        "vscode-kubernetes.helm-path-mac": "/Users/andrewlee/.vs-kubernetes/tools/helm/darwin-arm64/helm",
+        "vscode-kubernetes.minikube-path-mac": "/Users/andrewlee/.vs-kubernetes/tools/minikube/darwin-arm64/minikube"
+    },
+    "chat.tools.urls.autoApprove": {
+        "https://code.visualstudio.com": true,
+        "https://github.com/microsoft/vscode/wiki/*": true,
+        "https://neon.com": true
+    },
+    "typescript.experimental.useTsgo": true,
+    "datadog.codeSecurity.notification.suppressOnboarding": true
+}
