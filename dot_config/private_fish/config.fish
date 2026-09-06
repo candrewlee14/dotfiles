@@ -42,6 +42,7 @@ if status is-interactive
     end
 
     set -gx EDITOR nvim
+    set -gx SHELL (command -v fish)
     set -gx BAT_THEME ansi
     set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
