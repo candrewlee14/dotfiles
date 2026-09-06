@@ -73,3 +73,16 @@ echo "\n[-] Running fish install setup [-]"
 if command -v fish >/dev/null 2>&1; then
   fish ~/.config/fish/.on_install.fish
 fi
+
+{{- if eq .chezmoi.os "linux" }}
+echo "\n[-] Setting default browser to Zen [-]"
+if command -v omarchy >/dev/null 2>&1; then
+  if ! command -v zen-browser >/dev/null 2>&1 && ! pacman -Q zen-browser-bin >/dev/null 2>&1; then
+    omarchy install browser zen
+  fi
+  omarchy default browser zen
+elif command -v xdg-settings >/dev/null 2>&1 && command -v zen-browser >/dev/null 2>&1; then
+  xdg-settings set default-web-browser zen.desktop 2>/dev/null || true
+fi
+{{- end }}
+

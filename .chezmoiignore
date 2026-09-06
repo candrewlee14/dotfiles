@@ -23,5 +23,7 @@ Library/**
 .config/foot/**
 {{- end }}
 
-
+{{- if ne .chezmoi.os "linux" }}
+.config/mimeapps.list
+{{- end }}
 
