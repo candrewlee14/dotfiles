@@ -23,7 +23,7 @@ sudo apt install -y {{ . | quote }}
 {{ end -}}
 {{- else if (or (eq .chezmoi.osRelease.id "omarchy" "arch") (eq .chezmoi.osRelease.idLike "arch")) }}
 echo "[-] Updating Pacman packages [-]"
-if command -v omarchy-pkg-add >/dev/null 2>&1; then
+if command -v omarchy >/dev/null 2>&1; then
 {{ range .packages.linux.pacmans -}}
   omarchy pkg add {{ . | quote }}
 {{ end -}}
