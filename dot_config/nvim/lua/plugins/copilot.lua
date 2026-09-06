@@ -11,12 +11,21 @@ return {
           accept = "<C-l>",
           accept_word = false,
           accept_line = false,
-          next = "<C-]>",
-          prev = "<C-[>",
+          next = "<M-]>",
+          prev = "<M-[>",
           dismiss = "<C-/>",
         },
       },
       panel = { enabled = false },
     },
+    config = function(_, opts)
+      require("copilot").setup(opts)
+      vim.keymap.set("i", "<C-]>", function()
+        if require("copilot.suggestion").is_visible() then
+          require("copilot.suggestion").next()
+        end
+      end, { desc = "[copilot] next suggestion" })
+    end,
   },
 }
+
