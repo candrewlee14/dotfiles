@@ -1,3 +1,4 @@
+{{- if not (or (eq .chezmoi.osRelease.id "omarchy" "arch") (eq .chezmoi.osRelease.idLike "arch")) }}
 [".tmux"]
     type = "archive"
     url = "https://github.com/gpakosz/.tmux/archive/master.tar.gz"
@@ -8,6 +9,7 @@
     url = "https://github.com/junegunn/fzf/archive/master.tar.gz"
     exact = true
     stripComponents = 1
+{{- end }}
 [".config/gdb/gef"]
     type = "archive"
     url = "https://github.com/hugsy/gef/archive/master.tar.gz"

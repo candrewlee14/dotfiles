@@ -1,0 +1,10 @@
+{
+  "setup.default.agent.gemini": { "when": "false" },
+  "setup.default.agent.agy": {
+    "icon": "󰫢",
+    "label": "Antigravity",
+    "checked": "[[ \"$(cat ~/.config/omarchy/defaults/agent 2>/dev/null)\" == \"agy\" ]]",
+    "action": "bash -c 'mkdir -p ~/.config/omarchy/defaults && printf \"agy\\n\" > ~/.config/omarchy/defaults/agent && omarchy-notification-send \"Antigravity\" \"Set as default coding agent\"'"
+  }
+}
+

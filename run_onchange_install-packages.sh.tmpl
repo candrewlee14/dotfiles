@@ -21,6 +21,15 @@ sudo apt update
 {{ range .packages.linux.apts -}}
 sudo apt install -y {{ . | quote }}
 {{ end -}}
+{{- else if (or (eq .chezmoi.osRelease.id "omarchy" "arch") (eq .chezmoi.osRelease.idLike "arch")) }}
+echo "[-] Updating Pacman packages [-]"
+if command -v omarchy-pkg-add >/dev/null 2>&1; then
+{{ range .packages.linux.pacmans -}}
+  omarchy pkg add {{ . | quote }}
+{{ end -}}
+elif command -v sudo >/dev/null 2>&1; then
+  sudo pacman -S --needed --noconfirm {{ range .packages.linux.pacmans }}{{ . | quote }} {{ end }}
+fi
 {{ end -}}
 
 {{- else if eq .osid "darwin" }}
@@ -36,6 +45,7 @@ echo "[-] Updating casks [-]"
 {{ end -}}
 
 echo "[-] Updating Mise tools [-]"
+MISE_BIN="$(command -v mise || echo "$HOME/.local/bin/mise")"
 {{ range .packages.mise -}}
-~/.local/bin/mise use --global {{ . | quote }}
+"$MISE_BIN" use --global {{ . | quote }}
 {{ end -}}

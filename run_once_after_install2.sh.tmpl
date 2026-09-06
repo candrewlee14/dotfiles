@@ -13,17 +13,20 @@ echo "Fedora Linux detected"
 
 echo "Debian-based Linux detected"
 
+{{- else if (or (eq .chezmoi.osRelease.id "omarchy" "arch") (eq .chezmoi.osRelease.idLike "arch")) }}
+echo "Arch/Omarchy Linux detected"
 {{- else }}
 echo "Linux OS release not recognized"
 exit 1
 {{- end }}
 
-if test -f ~/.fonts/GeistMonoNerdFontMono-Regular.otf; then
+mkdir -p ~/.local/share/fonts
+if test -f ~/.local/share/fonts/GeistMonoNerdFontMono-Regular.otf || test -f ~/.fonts/GeistMonoNerdFontMono-Regular.otf || fc-list : family 2>/dev/null | grep -iq "GeistMono"; then
   echo "GeistMono Nerd Font already installed"
 else
   echo "\n[-] Downloading Nerd Fonts [-]"
   curl -L -O https://github.com/ryanoasis/nerd-fonts/releases/latest/download/GeistMono.zip && \
-  unzip GeistMono.zip -d ~/.fonts && \
+  unzip GeistMono.zip -d ~/.local/share/fonts && \
   rm GeistMono.zip && \
   fc-cache -fv || \
   echo "Failed to download GeistMono.zip"
@@ -48,6 +51,14 @@ sudo sh -c "echo $(which fish) >> /etc/shells"
 
 {{- end }}
 
+{{- if (or (eq .chezmoi.osRelease.id "omarchy" "arch") (eq .chezmoi.osRelease.idLike "arch")) }}
+# On Omarchy, login shell remains bash for systemd/uwsm session bootstrap;
+# omarchy-setup-fish sets up interactive shells to launch fish cleanly.
+if command -v omarchy-setup-fish >/dev/null 2>&1; then
+  echo "\n[-] Configuring Fish auto-launch via omarchy-setup-fish [-]"
+  omarchy-setup-fish
+fi
+{{- else }}
 # check if $SHELL is fish already
 
 if echo $SHELL | grep "fish" ; then
@@ -56,6 +67,9 @@ else
   echo "\n[-] Setting default shell to fish [-]"
   chsh -s $(which fish) || echo "chsh failed"
 fi
+{{- end }}
 
 echo "\n[-] Running fish install setup [-]"
-/usr/bin/env fish ~/.config/fish/.on_install.fish
+if command -v fish >/dev/null 2>&1; then
+  fish ~/.config/fish/.on_install.fish
+fi

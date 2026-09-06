@@ -22,6 +22,8 @@ else
   sudo apt install -y fish
 fi
 
+{{- else if (or (eq .chezmoi.osRelease.id "omarchy" "arch") (eq .chezmoi.osRelease.idLike "arch")) }}
+echo "Arch/Omarchy Linux detected"
 {{- else }}
 echo "Linux OS release not recognized"
 exit 1
@@ -43,7 +45,7 @@ fi
 {{- end }}
 
 echo "\n[-] Installing mise [-]"
-if test -x ~/.local/bin/mise; then
+if command -v mise >/dev/null 2>&1 || test -x ~/.local/bin/mise; then
   echo "mise already installed"
 else
   curl https://mise.run | sh

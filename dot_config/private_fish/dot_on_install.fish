@@ -4,7 +4,10 @@ if not functions -q fisher
     if not functions -q fisher
         echo "fisher failed to install"
     else
-        fisher install IlanCosman/tide@v6
+        # On Omarchy, Starship is themed dynamically with the desktop; install tide only on other platforms
+        if not type -q omarchy
+            fisher install IlanCosman/tide@v6
+        end
         fisher install PatrickF1/fzf.fish
     end
 end

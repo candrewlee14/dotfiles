@@ -7,3 +7,21 @@ Dockerfile
 *.local.*
 */lazy-lock.json
 
+{{- if ne .chezmoi.os "darwin" }}
+Library
+Library/**
+{{- end }}
+
+{{- if (or (eq .chezmoi.osRelease.id "omarchy" "arch") (eq .chezmoi.osRelease.idLike "arch")) }}
+.tmux
+.tmux/**
+.tmux.conf
+.gitconfig
+{{- else }}
+.config/hypr/**
+.config/omarchy/**
+.config/foot/**
+{{- end }}
+
+
+

@@ -23,6 +23,15 @@ packages:
       - bash
       - fish
       - direnv
+    pacmans:
+      - git
+      - curl
+      - bash
+      - fish
+      - direnv
+      - ghostty
+      - chezmoi
+      - omarchy-fish
     apks:
       - git
       - curl
