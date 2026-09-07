@@ -1,3 +1,5 @@
 # Terminal preference order for Hyprland session
+com.mitchellh.ghostty.desktop
 ghostty.desktop
 foot.desktop
+

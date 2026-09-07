@@ -14,6 +14,7 @@ window-padding-y = 14
 confirm-close-surface = false
 resize-overlay = never
 gtk-toolbar-style = flat
+window-show-tab-bar = auto
 
 # Cursor styling
 cursor-style = "block"
@@ -36,15 +37,28 @@ keybind = super+control+shift+alt+arrow_up=resize_split:up,100
 keybind = super+control+shift+alt+arrow_left=resize_split:left,100
 keybind = super+control+shift+alt+arrow_right=resize_split:right,100
 
+# Tab management
+keybind = ctrl+shift+t=new_tab
+keybind = super+shift+t=new_tab
+keybind = ctrl+tab=next_tab
+keybind = ctrl+shift+tab=previous_tab
+keybind = ctrl+shift+w=close_surface
+
 # Slowdown mouse scrolling
 mouse-scroll-multiplier = 0.95
 
 # Fix general slowness on hyprland (https://github.com/ghostty-org/ghostty/discussions/3224)
 async-backend = epoll
+gtk-single-instance = true
+quit-after-last-window-closed = false
 
 auto-update-channel = tip
 {{- else }}
+window-show-tab-bar = auto
+
 keybind = ctrl+d=new_split:right
+keybind = ctrl+tab=next_tab
+keybind = ctrl+shift+tab=previous_tab
 
 font-family = "GeistMono Nerd Font"
 
